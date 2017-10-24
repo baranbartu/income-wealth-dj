@@ -21,9 +21,13 @@ def upload_income_and_wealth_csv(request):
         return {'error': form.errors.get('csv_file')[0]}, 410
 
     f = request.FILES['csv_file']
+    # get list of list - it is like row-columns
     data = read_csv(f)
+    # update or insert to database
     update_or_create_income_and_wealth(data)
-    return {'status': True}
+
+    # 201 should be returned according to REST spec.
+    return {'status': True}, 201
 
 
 @json_view

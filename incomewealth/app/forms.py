@@ -15,7 +15,7 @@ class CsvFileForm(forms.Form):
             raise forms.ValidationError('The file type is not accepted.')
 
         try:
-            data = read_csv(f) # noqa
+            any_column = next(read_csv(f)) # noqa
         except csv.Error:
             raise forms.ValidationError('The file is broken or not csv.')
 
