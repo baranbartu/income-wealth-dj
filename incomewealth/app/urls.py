@@ -4,5 +4,8 @@ from incomewealth.app import views
 
 
 urlpatterns = [
+    url(r'^upload-income-and-wealth-csv/$',
+        views.upload_income_and_wealth_csv),
     url(r'^top10/$', views.top10),
+    url(r'^bottom50/$', views.bottom50),
 ]

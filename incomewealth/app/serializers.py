@@ -5,7 +5,7 @@ from django.core.exceptions import ValidationError
 QueryTop10 = namedtuple('QueryTop10', ('init', 'end'))
 
 
-def serialize_top10_request(data):
+def serialize_get_request(data):
     if not all(_ in data for _ in ['init', 'end']):
         raise ValidationError('"init" and "end" should be provided!')
 

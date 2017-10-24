@@ -3,41 +3,24 @@
 # from __future__ import unicode_literals
 
 import os
-import csv
 import logging
 
 from django.conf import settings
 from django.db import migrations
 
+from incomewealth.utils import read_csv, update_or_create_income_and_wealth
+
 logger = logging.getLogger(__name__)
 
 
 def load_initial_data(apps, schema_editor):
-    IncomeWealth = apps.get_model('app', 'IncomeWealth')
-
     csv_dump_file_path = os.path.join(
         settings.BASE_DIR, settings.INITIAL_DB_DUMP_FILE_RELATIVE_PATH)
 
     with open(csv_dump_file_path) as f:
-        reader = csv.reader(f, delimiter=';')
-        for index, row in enumerate(reader):
-            # index 0 contains column names
-            if index == 0:
-                continue
-
-            year = int(row[0])
-
-            obj, created = IncomeWealth.objects.update_or_create(
-                year=year,
-                defaults={
-                    'income_top10': float(row[1]),
-                    'wealth_top10': float(row[2]),
-                    'income_bottom50': float(row[3]),
-                    'wealth_bottom50': float(row[4]),
-                })
-
-            logger.info('{}, year: {}'.format(
-                'INSERTED' if created else 'UPDATED', year))
+        data = read_csv(f)
+        update_or_create_income_and_wealth(data)
+        logger.info('DONE.')
 
 
 def truncate_table(apps, schema_editor):
