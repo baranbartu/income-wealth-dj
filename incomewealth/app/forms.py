@@ -1,4 +1,5 @@
 import csv
+import copy
 
 from django import forms
 from incomewealth.utils import read_csv
@@ -15,7 +16,8 @@ class CsvFileForm(forms.Form):
             raise forms.ValidationError('The file type is not accepted.')
 
         try:
-            any_column = next(read_csv(f)) # noqa
+            # try was parsed or not, use deepcopy to keep original stream
+            next(read_csv(copy.deepcopy(f)))
         except csv.Error:
             raise forms.ValidationError('The file is broken or not csv.')
 

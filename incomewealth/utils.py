@@ -52,3 +52,30 @@ def update_or_create_income_and_wealth(data):
 
         logger.info('{}, year: {}'.format(
             'INSERTED' if created else 'UPDATED', year))
+
+
+def flattenize_list_of_objects(list_of_objects):
+    """
+    it is for common purpose to make list of objects to flattened dict
+    example;
+    [{'a':123, 'b': 234}, {'a':001, 'b': 002}]
+    >>
+    {'a': [123, 001], 'b': [234, 002]}
+    """
+    return dict(
+        zip(list_of_objects[0], zip(*[d.values() for d in list_of_objects])))
+
+
+def common_structured_view(f):
+    """
+    use for api endpoints to make wrap with {'data': <inner json result>}
+    """
+    def inner(*args, **kwargs):
+        inner_result = f(*args, **kwargs)
+        if not isinstance(inner_result, tuple):
+            result = {'data': inner_result}, 200
+        else:
+            result = {'data': inner_result[0]}, inner_result[1]
+        return result
+
+    return inner
