@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from incomewealth.app.serializers import serialize_get_request
 
 
-class FormTest(TestCase):
+class SerializerTest(TestCase):
 
     def setUp(self):
         self.correct_request = {'init': 2010, 'end': 2012}
