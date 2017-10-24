@@ -2,6 +2,8 @@ import logging
 import itertools
 import csv
 
+from django.conf import settings
+
 from incomewealth.app.models import IncomeWealth
 
 
@@ -68,14 +70,22 @@ def flattenize_list_of_objects(list_of_objects):
 
 def common_structured_view(f):
     """
-    use for api endpoints to make wrap with {'data': <inner json result>}
+    use for api endpoints to make wrapper like {'data': <inner json result>}
     """
     def inner(*args, **kwargs):
         inner_result = f(*args, **kwargs)
         if not isinstance(inner_result, tuple):
-            result = {'data': inner_result}, 200
+            actual_data, status = inner_result, 200
         else:
-            result = {'data': inner_result[0]}, inner_result[1]
+            actual_data, status = inner_result[0], inner_result[1]
+
+        # convert data using default api mapping
+        field_mapping = settings.DEFAULT_API_FIELD_MAPPING
+        for field, should_be in field_mapping.items():
+            if field in actual_data:
+                actual_data[should_be] = actual_data.pop(field)
+
+        result = {'data': actual_data}, status
         return result
 
     return inner

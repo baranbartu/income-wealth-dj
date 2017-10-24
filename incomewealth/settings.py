@@ -143,3 +143,11 @@ if TESTING:
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': ':memory:',
     }
+
+DEFAULT_API_FIELD_MAPPING = {
+    'year': 'period',
+    'income_bottom50': 'income',
+    'income_top10': 'income',
+    'wealth_bottom50': 'wealth',
+    'wealth_top10': 'wealth'
+}
