@@ -30,10 +30,10 @@ def load_initial_data(apps, schema_editor):
             obj, created = IncomeWealth.objects.update_or_create(
                 year=year,
                 defaults={
-                    'income_top_10': float(row[1]),
-                    'wealth_top_10': float(row[2]),
-                    'income_bottom_50': float(row[3]),
-                    'wealth_bottom_50': float(row[4]),
+                    'income_top10': float(row[1]),
+                    'wealth_top10': float(row[2]),
+                    'income_bottom50': float(row[3]),
+                    'wealth_bottom50': float(row[4]),
                 })
 
             logger.info('{}, year: {}'.format(

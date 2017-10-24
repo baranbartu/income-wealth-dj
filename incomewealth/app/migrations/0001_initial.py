@@ -18,10 +18,10 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('year', models.IntegerField()),
-                ('income_top_10', models.FloatField()),
-                ('wealth_top_10', models.FloatField()),
-                ('income_bottom_50', models.FloatField()),
-                ('wealth_bottom_50', models.FloatField()),
+                ('income_top10', models.FloatField()),
+                ('wealth_top10', models.FloatField()),
+                ('income_bottom50', models.FloatField()),
+                ('wealth_bottom50', models.FloatField()),
             ],
         ),
     ]
