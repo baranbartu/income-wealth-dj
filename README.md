@@ -20,3 +20,4 @@ version like '--python=/usr/bin/python/2.7.10')
 12- grant privileges: GRANT ALL PRIVILEGES ON incomewealth.* TO 'incomewealth'@'%' IDENTIFIED BY '8e5HLr7gWas=' WITH GRANT OPTION; 
 13- execute migrations: 'python manage.py migrate' it will also populate the db with initial data
 14- create super user (optional): python manage.py createsuperuser
+15- run tests: coverage run manage.py test -v 2

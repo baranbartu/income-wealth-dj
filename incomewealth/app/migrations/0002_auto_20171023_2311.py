@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 def load_initial_data(apps, schema_editor):
     csv_dump_file_path = os.path.join(
-        settings.BASE_DIR, settings.INITIAL_DB_DUMP_FILE_RELATIVE_PATH)
+        settings.BASE_DIR, settings.INIT_CSV_DUMP_FILE_REL_PATH)
 
     with open(csv_dump_file_path) as f:
         data = read_csv(f)

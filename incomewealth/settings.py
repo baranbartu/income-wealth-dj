@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -128,4 +129,17 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-INITIAL_DB_DUMP_FILE_RELATIVE_PATH = 'data/wealthincomeus.csv'
+INIT_CSV_DUMP_FILE_REL_PATH = 'data/wealthincomeus.csv'
+WRONG_CSV_FILE_REL_PATH = 'data/wealthincomeus.csv.xlsx'
+
+TESTING = any(test in sys.argv for test in (
+    'test', 'csslint', 'jenkins', 'jslint',
+    'jtest', 'lettuce', 'pep8', 'pyflakes',
+    'pylint', 'sloccount',
+))
+
+if TESTING:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': ':memory:',
+    }
