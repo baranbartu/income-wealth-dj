@@ -26,6 +26,8 @@ Regarding Rest API end points are also prepared to make all of them SAAS
    # 13- execute migrations: 'python manage.py migrate' it will also populate the db with initial data
    # 14- create super user (optional): python manage.py createsuperuser
    # 15- run tests: coverage run manage.py test -v 2
+   # 16- run server: python manage.py runserver
+   # ENJOY! all the endpoints are under the localhost:8000/api/v1/
 ```
 
 # Docker Instructions (Also MacOS Sierra)
