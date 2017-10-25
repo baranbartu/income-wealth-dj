@@ -81,15 +81,15 @@ WSGI_APPLICATION = 'incomewealth.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'incomewealth',
-        'USER': 'incomewealth',
-        'PASSWORD': '8e5HLr7gWas=',
-        'HOST': '127.0.0.1',
-        'PORT': '3306'
+        'ENGINE': os.environ.get('DB_DRIVER', 'django.db.backends.mysql'),
+        'NAME': os.environ.get('DB_NAME', 'incomewealth'),
+        'USER': os.environ.get('DB_USER', 'incomewealth'),
+        'HOST': os.environ.get('DB_HOST', '127.0.0.1'),
+        'PORT': os.environ.get('DB_PORT', '3306')
     }
 }
-
+if DATABASES['default']['USER'] != 'postgres':
+    DATABASES['default']['PASSWORD'] = '8e5HLr7gWas='
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators

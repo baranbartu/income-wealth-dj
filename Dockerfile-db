@@ -1,0 +1,6 @@
+# A MySQL container.
+FROM mysql:5.7.20
+LABEL maintainer="Baran Bartu Demirci"
+
+EXPOSE 3306
+CMD ["mysqld"]

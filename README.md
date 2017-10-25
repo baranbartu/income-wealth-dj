@@ -6,6 +6,7 @@ Regarding Rest API end points are also prepared to make all of them SAAS
 # Instructions For MacOS Sierra
 
 ```bash
+   # PRE condition: export DJANGO_SETTINGS_MODULE=incomewealth.settings
    # 1- Clone repo
    # 2- create "env" directory under the root(income-wealth-dj)
    # 3- go into env and run 'virtualenv income-wealth' (can be specified python
@@ -26,3 +27,17 @@ Regarding Rest API end points are also prepared to make all of them SAAS
    # 14- create super user (optional): python manage.py createsuperuser
    # 15- run tests: coverage run manage.py test -v 2
 ```
+
+# Docker Instructions (Also MacOS Sierra)
+
+```bash
+   # 1- brew install docker docker-compose docker-machine xhyve docker-machine-driver-xhyve
+   # 2- sudo chown root:wheel $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+   # 3- sudo chmod u+s $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+   # 4- docker-machine create default --driver xhyve --xhyve-experimental-nfs-share
+   # 5- eval $(docker-machine env default)
+   # 6- docker-compose up
+   # ENJOY!
+```
+
+# P.S. Currently there is a little incident while running docker which will be resolved in a few days

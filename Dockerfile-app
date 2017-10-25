@@ -1,0 +1,22 @@
+# Django app container.
+FROM python:2.7.10
+LABEL maintainer="Baran Bartu Demirci"
+
+# env. variables
+ENV DJANGO_SETTINGS_MODULE=incomewealth.settings
+ENV DB_DRIVER=django.db.backends.postgresql
+ENV DB_NAME=postgres
+ENV DB_USER=postgres
+ENV DB_HOST=db
+ENV DB_PORT=5432
+
+# Place app in container.
+COPY . /opt/income-wealth-dj
+WORKDIR /opt/income-wealth-dj
+
+# Install dependencies.
+RUN pip install -r requirements.txt
+RUN python manage.py migrate
+
+EXPOSE 80
+CMD python manage.py runserver 0.0.0.0:80

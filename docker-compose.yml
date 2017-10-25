@@ -1,0 +1,24 @@
+version: '2'
+services:
+  db:
+    image: postgres
+  app:
+    build:
+        context: .
+        dockerfile: Dockerfile-app
+    ports:
+      - "80:80"
+    links:
+      - db
+    depends_on:
+      - db
+
+  # db:
+  #   build:
+  #       context: .
+  #       dockerfile: Dockerfile-db
+  #   volumes:
+  #     - /var/lib/mysql
+  #   environment:
+  #      DB_HOST: db
+  #      MYSQL_ROOT_PASSWORD: 8e5HLr7gWas=
