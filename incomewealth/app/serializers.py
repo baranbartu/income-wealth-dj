@@ -29,7 +29,8 @@ def serialize_saving_capacity_request(request):
     content_type = request.content_type
 
     if content_type != 'application/json':
-        raise ValidationError('Content-Type should be application/json only!')
+        raise ValidationError(
+            'Content-Type should be "application/json" only!')
 
     try:
         data = json.loads(body)
