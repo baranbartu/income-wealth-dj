@@ -151,3 +151,5 @@ DEFAULT_API_FIELD_MAPPING = {
     'wealth_bottom50': 'wealth',
     'wealth_top10': 'wealth'
 }
+
+MAX_YEAR_TO_TRAIN_DATA = 2014

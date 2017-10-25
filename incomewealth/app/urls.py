@@ -11,4 +11,6 @@ urlpatterns = [
     url(r'^wealthinequality/$', views.wealth_inequality),
     url(r'^incomeinequality/$', views.income_inequality),
     url(r'^savingcapacity/$', views.saving_capacity),
+    url(r'^predictwealth/$', views.predict_wealth),
+    url(r'^predictincome/$', views.predict_income),
 ]

@@ -4,5 +4,4 @@ ipdb==0.10.3
 ipython==4.1.2
 django-extensions==1.9.6
 django-jsonview==1.1.0
-numpy==1.13.3
 coverage==4.4.1
