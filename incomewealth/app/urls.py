@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^bottom50/$', views.bottom50),
     url(r'^wealthinequality/$', views.wealth_inequality),
     url(r'^incomeinequality/$', views.income_inequality),
+    url(r'^savingcapacity/$', views.saving_capacity),
 ]
