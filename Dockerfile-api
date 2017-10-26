@@ -3,12 +3,16 @@ FROM python:2.7.10
 LABEL maintainer="Baran Bartu Demirci"
 
 # env. variables
+# commented out because of incident with db connections
+# ENV DB_DRIVER=django.db.backends.mysql
+# ENV DB_NAME=information_schema
+# ENV DB_USER=root
+# ENV DB_PASSWORD=supersecure
+# ENV DB_HOST=db
+# ENV DB_PORT=3306
 ENV DJANGO_SETTINGS_MODULE=incomewealth.settings
-ENV DB_DRIVER=django.db.backends.postgresql
-ENV DB_NAME=postgres
-ENV DB_USER=postgres
-ENV DB_HOST=db
-ENV DB_PORT=5432
+ENV DB_SQLITE=yes
+ENV ALLOW_ALL=yes
 
 # Place app in container.
 COPY . /opt/income-wealth-dj
@@ -16,7 +20,7 @@ WORKDIR /opt/income-wealth-dj
 
 # Install dependencies.
 RUN pip install -r requirements.txt
-RUN python manage.py migrate
 
 EXPOSE 80
+CMD python manage.py migrate
 CMD python manage.py runserver 0.0.0.0:80

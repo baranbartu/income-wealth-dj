@@ -27,7 +27,8 @@ SECRET_KEY = '458eqlzy%v3e9hp7u(80_0s6^3efkiu+y$pqtn_o9+xavw9_pe'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+if os.environ.get('ALLOW_ALL') == 'yes':
+    ALLOWED_HOSTS.append('*')
 
 # Application definition
 
@@ -84,12 +85,17 @@ DATABASES = {
         'ENGINE': os.environ.get('DB_DRIVER', 'django.db.backends.mysql'),
         'NAME': os.environ.get('DB_NAME', 'incomewealth'),
         'USER': os.environ.get('DB_USER', 'incomewealth'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', '8e5HLr7gWas='),
         'HOST': os.environ.get('DB_HOST', '127.0.0.1'),
         'PORT': os.environ.get('DB_PORT', '3306')
     }
 }
-if DATABASES['default']['USER'] != 'postgres':
-    DATABASES['default']['PASSWORD'] = '8e5HLr7gWas='
+
+if os.environ.get('DB_SQLITE') == 'yes':
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'incomewealth',
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
