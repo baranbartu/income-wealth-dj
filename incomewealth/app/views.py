@@ -32,7 +32,7 @@ def upload_income_and_wealth_csv(request):
     # necessary validation was made in Form implementation
     form = CsvFileForm(request.POST, request.FILES)
     if not form.is_valid():
-        return {'error': form.errors.get('csv_file')[0]}, 410
+        return {'error': form.errors.get('csv_file')[0]}, 400
 
     f = request.FILES['csv_file']
     # get list of list - it is like row-columns
@@ -54,7 +54,7 @@ def top10_bottom50_common_part(request, column1, column2):
         query = serialize_get_request(request.GET)
     except ValidationError, e:
         # raise BadRequest in case of validation error
-        return {'error': unicode(e.message)}, 410
+        return {'error': unicode(e.message)}, 400
 
     desired_columns = ('year', column1, column2)
     # get regarding values from db as dict
@@ -95,7 +95,7 @@ def inequality_factors_common_part(request, _type):
         query = serialize_get_request(request.GET)
     except ValidationError, e:
         # raise BadRequest in case of validation error
-        return {'error': unicode(e.message)}, 410
+        return {'error': unicode(e.message)}, 400
 
     # define desired columns using inequality type
     desired_columns = ('year', '{}_bottom50'.format(_type),
@@ -143,7 +143,7 @@ def saving_capacity(request):
         query = serialize_saving_capacity_request(request)
     except ValidationError, e:
         # raise BadRequest in case of validation error
-        return {'error': unicode(e.message)}, 410
+        return {'error': unicode(e.message)}, 400
 
     # get regarding values from db as dict
     values = IncomeWealth.objects.filter(
@@ -167,7 +167,7 @@ def predict_common_parts(request, _type):
         query = serialize_predict_request(request)
     except ValidationError, e:
         # raise BadRequest in case of validation error
-        return {'error': unicode(e.message)}, 410
+        return {'error': unicode(e.message)}, 400
 
     # it will make like 'income_bottom50'
     column = '{}_{}{}'.format(_type, query.group_verbose, query.group)
