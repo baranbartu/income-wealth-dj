@@ -39,8 +39,8 @@ Regarding Rest API end points are also prepared to make all of them SAAS
    # 4- docker-machine create default --driver xhyve --xhyve-experimental-nfs-share
    # 5- eval $(docker-machine env default)
    # 6- docker-compose up
-   # 7- get docker machine ip and visit 80. port: "docker-machine ls | awk '{print $5}'"
+   # 7- get docker machine ip and visit 8080. port: "docker-machine ls | awk '{print $5}'"
    # ENJOY!
 ```
 
-# P.S. Currently there is a little incident while running docker which will be resolved in a few days
+~~# P.S. Currently there is a little incident while running docker which will be resolved in a few days~~
