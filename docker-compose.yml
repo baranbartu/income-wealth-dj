@@ -11,11 +11,12 @@ services:
   #     MYSQL_ROOT_PASSWORD: supersecure
 
   api:
+    container_name: api 
     build:
       context: .
       dockerfile: Dockerfile-api
     ports:
-      - "80:80"
+      - "8080:80"
     # links:
     #   - db
     # depends_on:

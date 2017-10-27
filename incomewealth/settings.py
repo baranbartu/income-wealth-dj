@@ -94,7 +94,7 @@ DATABASES = {
 if os.environ.get('DB_SQLITE') == 'yes':
     DATABASES['default'] = {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'incomewealth',
+        'NAME': '/opt/income-wealth-dj/incomewealth.sqlite3',
     }
 
 # Password validation

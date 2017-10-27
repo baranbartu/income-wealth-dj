@@ -20,7 +20,7 @@ WORKDIR /opt/income-wealth-dj
 
 # Install dependencies.
 RUN pip install -r requirements.txt
+RUN python manage.py migrate
 
 EXPOSE 80
-CMD python manage.py migrate
 CMD python manage.py runserver 0.0.0.0:80
