@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
             name='IncomeWealth',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('year', models.IntegerField()),
+                ('year', models.IntegerField(unique=True)),
                 ('income_top10', models.FloatField()),
                 ('wealth_top10', models.FloatField()),
                 ('income_bottom50', models.FloatField()),
